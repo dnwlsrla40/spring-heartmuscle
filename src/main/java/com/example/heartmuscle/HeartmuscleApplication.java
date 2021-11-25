@@ -19,12 +19,13 @@ public class HeartmuscleApplication {
     }
 
     @Bean
-    public CommandLineRunner init(VideoRepository videoRepository){
+    public CommandLineRunner init(VideoRepository videoRepository, CategoryRepository categoryRepository){
         return args -> {
-            Category category = Category.builder()
+            Category category = categoryRepository.save(Category.builder()
                     .category("home-training")
                     .lv("3")
-                    .build();
+                    .build());
+
             videoRepository.save(Video.builder()
                     .title("NO 층간소음 올인원 운동 - 40분 유산소운동 홈트 - 관절에 무리없이 체지방 태우기")
                     .url("https://www.youtube.com/embed/myNjmnvl6x0")
